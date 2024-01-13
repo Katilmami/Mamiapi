@@ -20,13 +20,7 @@ def get_closest_match(query, responses):
 
 def get_reply(message, responses):
     question = message.lower()
-    reply = responses.get(question)
-
-    if not reply:
-        closest_match_reply = get_closest_match(question, responses)
-        return closest_match_reply if closest_match_reply else 'Anlamsız bir soru sordun.'
-    
-    return reply
+    return get_closest_match(question, responses)
 
 @app.route('/apis/chatbotapiv1/message=<message>', methods=['GET'])
 def get_response(message):
