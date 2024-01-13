@@ -55,4 +55,4 @@ def mamimod():
     return render_template('mamimod.html', current_content=current_content)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
