@@ -45,7 +45,7 @@ def get_response(message):
 @app.route('/apis/chatbotapiv1/message=', methods=['GET'])
 def mamimodpro():
     responses = load_responses()
-    response_json = json.dumps({'alındı': 'Mami', 'cevap': 'HE! YARRAM')
+    response_json = json.dumps({'alındı': 'Mami', 'cevap': 'HE! YARRAM'})
     return response_json, 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 @app.route('/mamimod', methods=['GET', 'POST'])
