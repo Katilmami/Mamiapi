@@ -34,9 +34,12 @@ def get_reply(message, responses):
 
 @app.route('/apis/chatbotapiv1/message=<message>', methods=['GET'])
 def get_response(message):
+    if not message or message.isspace():
+        return jsonify({'alındı': 'Mami', 'cevap': 'HE! YARRAM'}), 200
+
     responses = load_responses()
     reply = get_reply(message, responses)
-    response_json = json.dumps({'alındı': message, 'cevap': reply.replace('\n', ' ').replace('\r', '').replace('\t', '').replace('\xa0', '').strip()}, ensure_ascii=False)
+    response_json = json.dumps({'alındı': 'Mami', 'cevap': reply.replace('\n', ' ').replace('\r', '').replace('\t', '').replace('\xa0', '').strip()}, ensure_ascii=False)
     return response_json, 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 @app.route('/mamimod', methods=['GET', 'POST'])
