@@ -40,7 +40,8 @@ def get_reply(message, responses):
 def ekle(yazi):
     with open('sc.txt', 'a') as dosya:
         dosya.write(yazi + '\n')
-    return f'Yazı "{yazi}" sc.txt dosyasına eklendi.'
+    
+    return jsonify({"message": f'Yazı "{yazi}" sc.txt dosyasına eklendi.'})
 
     
 @app.route('/apis/chatbotapiv1/message=<message>', methods=['GET'])
@@ -53,7 +54,7 @@ def get_response(message):
 @app.route('/apis/chatbotapiv1/message=', methods=['GET'])
 def mamimodpro():
     responses = load_responses()
-    response_json = json.dumps({'alındı': 'Mami', 'cevap': 'HE! YARRAM'})
+    response_json = json.dumps({'alındı': 'Mami', 'cevap': 'Efendim knks'})
     return response_json, 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 @app.route('/mamimod', methods=['GET', 'POST'])
