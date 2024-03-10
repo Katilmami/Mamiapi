@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import json
+import os
 from fuzzywuzzy import fuzz
 
 app = Flask(__name__)
@@ -28,13 +29,20 @@ def get_reply(message, responses):
     question = message.lower()
 
     if not question or question.isspace():
-        return 'HE! YARRAM'
+        return 'Efendim knk'
 
     closest_match = get_closest_match(question, responses)
     closest_match_reply = responses.get(closest_match)
     
     return closest_match_reply
 
+@app.route('/ekle/<yazi>', methods=['GET'])
+def ekle(yazi):
+    with open('sc.txt', 'a') as dosya:
+        dosya.write(yazi + '\n')
+    return f'Yazı "{yazi}" sc.txt dosyasına eklendi.'
+
+    
 @app.route('/apis/chatbotapiv1/message=<message>', methods=['GET'])
 def get_response(message):
     responses = load_responses()
